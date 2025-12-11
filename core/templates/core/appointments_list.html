@@ -1,0 +1,101 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% block content %}
+
+<style>
+    /* Heading */
+    h2 {
+        color: #6A0DAD;
+        font-weight: 700;
+        margin-bottom: 20px;
+    }
+
+    /* Create Appointment Button */
+    .create-btn {
+        display: inline-block;
+        padding: 10px 18px;
+        background: linear-gradient(135deg, #C89AFF, #A566FF);
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        transition: 0.3s;
+    }
+    .create-btn:hover {
+        background: linear-gradient(135deg, #B57DFF, #8C3DFF);
+    }
+
+    /* Table container */
+    .appointments-table {
+        width: 100%;
+        border-collapse: collapse;
+        background: #FFFFFF;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Table header */
+    .appointments-table th {
+        background: #E9D4FF;
+        color: #4A0072;
+        padding: 14px;
+        text-align: left;
+        font-size: 15px;
+    }
+
+    /* Table rows */
+    .appointments-table td {
+        padding: 12px;
+        border-bottom: 1px solid #F2E8FF;
+        font-size: 14px;
+        color: #2E2E2E;
+    }
+
+    /* Hover effect */
+    .appointments-table tr:hover td {
+        background: #F6ECFF;
+        transition: 0.2s;
+    }
+
+    /* Empty row message */
+    .empty-row td {
+        text-align: center;
+        padding: 20px;
+        font-style: italic;
+        color: #6A0DAD;
+    }
+</style>
+
+<h2>Appointments</h2>
+
+<a href="{% url 'core:appointment_create' %}" class="create-btn">+ Create Appointment</a>
+
+<table class="appointments-table">
+    <tr>
+        <th>Patient</th>
+        <th>Doctor</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Status</th>
+    </tr>
+
+    {% for a in appointments %}
+    <tr>
+        <td>{{ a.patient.full_name }}</td>
+        <td>{{ a.doctor.full_name }}</td>
+        <td>{{ a.date }}</td>
+        <td>{{ a.time }}</td>
+        <td>{{ a.get_status_display }}</td>
+    </tr>
+    {% empty %}
+    <tr class="empty-row">
+        <td colspan="5">No appointments yet.</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}
+
+

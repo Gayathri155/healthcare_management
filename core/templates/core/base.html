@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Health Care Management System</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #E8F4FF, #D2EAFF);
+        }
+
+        /* Header */
+        h1 {
+            background-color: #A566FF;
+            color: white;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* Navbar */
+        nav {
+            background: #FFFFFF;
+            position: sticky;
+            top:0;
+            box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
+            padding: 12px 20px;
+            display: flex;
+            justify-content: flex-end;  /* Right side menu */
+            gap: 20px;
+        }
+
+        nav a {
+            text-decoration: underline;
+            color: #0077B6;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #0d47a1;
+        }
+
+        /* Page Content */
+        .content {
+            padding: 30px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: white;
+            color: black;
+            text-align: center;
+            padding: 5px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>🏥 Health Care Management System ❤️</h1>
+
+<nav>
+    <a href="{% url 'core:home' %}">Home</a>
+    <a href="{% url 'core:patients_list' %}">Patients</a>
+    <a href="{% url 'core:appointments_list' %}">Appointments</a>
+</nav>
+
+
+<div class="content">
+    {% block content %}
+    {% endblock %}
+</div>
+
+<footer>
+    <p>© 2025 HCMS — Your Health ❤️ | Our Priority 🏥</p>
+</footer>
+
+</body>
+</html>

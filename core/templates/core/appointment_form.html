@@ -1,0 +1,110 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<style>
+    /* Page background */
+    body {
+        background: #D2EAFF;
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    /* Form container */
+    .form-container {
+        background: #F3E8FF;
+        border-radius: 15px;
+        padding: 40px 30px;
+        max-width: 700px;
+        margin: 60px auto; /* center on page */
+        box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+    }
+
+    /* Form title */
+    .form-title {
+        color: #6A0DAD;
+        font-weight: 700;
+        text-align: center;
+        font-size: 28px;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    /* Form fields */
+    form p {
+        margin-bottom: 15px;
+        font-size: 16px;
+        color: #333;
+    }
+
+    input, select, textarea {
+        width: 100%;
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        font-size: 16px;
+        box-sizing: border-box;
+    }
+
+    input:focus, select:focus, textarea:focus {
+        border-color: #7B39FF;
+        outline: none;
+        box-shadow: 0 0 5px rgba(123, 57, 255, 0.5);
+    }
+
+    /* Buttons */
+    .btn-primary {
+        background-color: #7B39FF;
+        color: #fff;
+        padding: 10px 25px;
+        border-radius: 8px;
+        font-weight: 600;
+        border: none;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .btn-primary:hover {
+        background-color: #5E30C0;
+    }
+
+    .btn-secondary {
+        background-color: #B3A4D6;
+        color: #fff;
+        padding: 10px 25px;
+        border-radius: 8px;
+        font-weight: 600;
+        border: none;
+        cursor: pointer;
+        text-decoration: none;
+        transition: 0.3s;
+    }
+
+    .btn-secondary:hover {
+        background-color: #9C8BC9;
+    }
+
+    /* Center buttons */
+    .form-buttons {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+</style>
+
+<div class="form-container">
+    <h2 class="form-title">{{ form_title }}</h2>
+    <hr>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="form-buttons">
+            <button type="submit" class="btn-primary">Save</button>
+            <a href="{% url 'core:appointments_list' %}" class="btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
+
+{% endblock %}
